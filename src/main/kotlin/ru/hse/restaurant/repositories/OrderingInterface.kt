@@ -1,7 +1,7 @@
 package ru.hse.restaurant.repositories
 
 import org.springframework.data.jpa.repository.JpaRepository
-import ru.hse.restaurant.models.User
+import ru.hse.restaurant.models.Ordering
 import java.util.*
 
-interface UserRepository : JpaRepository<User, UUID>
+interface OrderingRepository : JpaRepository<Ordering, UUID>

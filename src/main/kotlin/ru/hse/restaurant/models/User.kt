@@ -1,18 +1,17 @@
 package ru.hse.restaurant.models
 
 import jakarta.persistence.*
-import lombok.Data
+import java.util.*
 
 @Entity
 @Table(name = "users")
-data class User (
+class User (
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
-    val id: Long,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID,
     val username: String,
     val password: String,
     val type: String
 ) {
-    constructor() : this(1, "", "", "")
+    constructor() : this(UUID.randomUUID(), "", "", "")
 }

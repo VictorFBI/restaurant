@@ -8,3 +8,5 @@ spring:
     password: postgres
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: update
