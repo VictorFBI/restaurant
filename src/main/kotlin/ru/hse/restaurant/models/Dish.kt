@@ -2,7 +2,6 @@ package ru.hse.restaurant.models
 
 import jakarta.persistence.*
 import java.math.BigDecimal
-import java.sql.Time
 
 @Entity
 @Table(name = "menu")
@@ -13,7 +12,11 @@ class Dish(
     private val name: String,
     private val description: String,
     private val price: BigDecimal,
-    private val timeToCook: Time
+    private val minutesToCook: Int,
+    private val author: String
 ) {
-    constructor() : this(0, "", "", BigDecimal(0), Time(0))
+    fun getPrice(): BigDecimal = price
+    fun getName(): String = name
+    fun getMinutes(): Int = minutesToCook
+    constructor() : this(0, "", "", BigDecimal(0),0, "")
 }

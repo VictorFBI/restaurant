@@ -1,26 +1,22 @@
 package ru.hse.restaurant.models
 
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.math.BigDecimal
-import java.sql.Time
+import java.time.LocalTime
 import java.util.*
 
 @Entity
-@Table (name = "orderings")
+@Table(name = "orderings")
 class Ordering(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private val id: UUID,
     @ElementCollection
-    private val dishID: List<Int>,
-    private val timeStarted: Time,
-    private val timeEnded: Time,
-    private val price: BigDecimal
+    private val dishID: MutableList<Int>,
+    private val timeStarted: LocalTime,
+    private val timeEnded: LocalTime,
+    private val price: BigDecimal,
+    private val customer: String
 ) {
-    constructor() : this(UUID.randomUUID(), listOf(), Time(0), Time(0), BigDecimal(0))
+    constructor() : this(UUID.randomUUID(), mutableListOf(), LocalTime.now(), LocalTime.now(), BigDecimal(0), "")
 }
