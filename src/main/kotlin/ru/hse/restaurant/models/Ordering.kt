@@ -3,14 +3,13 @@ package ru.hse.restaurant.models
 import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.LocalTime
-import java.util.*
 
 @Entity
 @Table(name = "orderings")
 class Ordering(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private val id: UUID,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private val id: Int,
     @ElementCollection
     private val dishID: MutableList<Int>,
     private val timeStarted: LocalTime,
@@ -18,5 +17,7 @@ class Ordering(
     private val price: BigDecimal,
     private val customer: String
 ) {
-    constructor() : this(UUID.randomUUID(), mutableListOf(), LocalTime.now(), LocalTime.now(), BigDecimal(0), "")
+    fun getPrice(): BigDecimal = price
+    fun getCustomer(): String = customer
+    constructor() : this(0, mutableListOf(), LocalTime.now(), LocalTime.now(), BigDecimal(0), "")
 }

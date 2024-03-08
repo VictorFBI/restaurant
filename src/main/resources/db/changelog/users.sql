@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Victor Frolov-Bukanov:5
+--changeset Victor Frolov-Bukanov:13
 
 create table users
 (
@@ -15,7 +15,7 @@ alter table users
 
 create table menu
 (
-    id              integer not null
+    id              serial not null
         primary key,
     name            varchar(255),
     description     varchar(255),
@@ -29,7 +29,7 @@ alter table menu
 
 create table orderings
 (
-    id           uuid not null
+    id           serial not null
         primary key,
     price        numeric(38, 2),
     time_started time(6),
@@ -42,11 +42,23 @@ alter table orderings
 
 create table ordering_dishid
 (
-    ordering_id uuid not null
+    ordering_id integer not null
         constraint fkh78ymb99v8xsdlct0p7lh60ig
             references orderings,
     dishid      integer
 );
 
 alter table ordering_dishid
+    owner to postgres;
+
+create table feedbacks
+(
+    id           serial not null
+        primary key,
+    order_id        integer,
+    assessment      integer,
+    text     varchar(255)
+);
+
+alter table feedbacks
     owner to postgres;
